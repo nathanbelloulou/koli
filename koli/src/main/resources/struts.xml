@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<constant name="struts.devMode" value="false" />
+	<package name="koli" extends="struts-default">
+		<interceptors>
+			<interceptor-stack name="appDefaultStack">
+				<interceptor-ref name="defaultStack">
+					<param name="exception.logEnabled">true</param>
+					<param name="exception.logLevel">ERROR</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="appDefaultStack" />
+		<global-results>
+			<result name="error">include/error.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception"
+				result="error" />
+		</global-exception-mappings>
+		<!-- JOUR FERIE -->
+
+		<action name="allJoursFeriesFinder" class="org.domotyk.koli.action.AllJoursFeriesFinder"
+			method="execute">
+			<result name="success">/jourferie/joursinfo.jsp</result>
+		</action>
+
+		<action name="*JourFerieSave" class="org.domotyk.koli.action.JourFerieSaver"
+			method="{1}">
+			<result name="input">/jourferie/inputjour.jsp</result>
+			<result name="success">/jourferie/joursinfo.jsp</result>
+		</action>
+		<action name="*JourFerieUpdate" class="org.domotyk.koli.action.JourFerieUpdater"
+			method="{1}">
+			<result name="input">/jourferie/inputjour.jsp</result>
+			<result name="success">/jourferie/joursinfo.jsp</result>
+		</action>
+		<action name="jourFerieDelete" class="org.domotyk.koli.action.JourFerieDeleter"
+			method="execute">
+			<result name="success">/jourferie/joursinfo.jsp</result>
+		</action>
+
+		<!--MESSAGE -->
+		<action name="messageFinder" class="org.domotyk.koli.action.MessageFinder"
+			method="execute">
+			<result name="success">/message/messageinfo.jsp</result>
+		</action>
+		<action name="allMessagesFinder" class="org.domotyk.koli.action.AllMessagesFinder"
+			method="execute">
+			<result name="success">/message/messagesinfo.jsp</result>
+		</action>
+		<action name="*MessageUpdate" class="org.domotyk.koli.action.MessageUpdater"
+			method="{1}">
+			<result name="input">/message/inputmessage.jsp</result>
+			<result name="success">/message/messagesinfo.jsp</result>
+		</action>
+		<action name="messageDelete" class="org.domotyk.koli.action.MessageDeleter"
+			method="execute">
+			<result name="success">/message/messagesinfo.jsp</result>
+		</action>
+		<action name="*MessageSave" class="org.domotyk.koli.action.MessageSaver"
+			method="{1}">
+			<result name="input">/message/inputmessage.jsp</result>
+			<result name="success">/message/messagesinfo.jsp</result>
+		</action>
+
+
+
+		<!--COLIS -->
+		<action name="colisFinder" class="org.domotyk.koli.action.ColisFinder"
+			method="execute">
+			<result name="success">colis/colisinfo.jsp</result>
+		</action>
+		<action name="allColisFinder" class="org.domotyk.koli.action.AllColisFinder"
+			method="execute">
+			<result name="success">colis/colisinfos.jsp</result>
+		</action>
+
+		<action name="*ColisUpdate" class="org.domotyk.koli.action.ColisUpdater"
+			method="{1}">
+			<result name="input">colis/inputcolisupdate.jsp</result>
+			<result name="success">colis/colisupdated.jsp</result>
+		</action>
+		<action name="colisDelete" class="org.domotyk.koli.action.ColisDeleter"
+			method="execute">
+			<result name="success">colis/colisdeleted.jsp</result>
+		</action>
+		<action name="colisAnalyse" class="org.domotyk.koli.action.ColisAnalyser"
+			method="execute">
+			<result name="success">colis/colisinfo.jsp</result>
+		</action>
+		<action name="*ColisSave" class="org.domotyk.koli.action.ColisSaver"
+			method="{1}">
+			<result name="input">colis/inputcolissave.jsp</result>
+			<result name="success">colis/colissaved.jsp</result>
+		</action>
+		<action name="colisAffiche" class="org.domotyk.koli.action.AllColisFinder"
+			method="executeSeleted">
+			<result name="success">colis/colisinfos.jsp</result>
+		</action>
+
+
+
+		<!--ANALYSE -->
+		<action name="allAnalysesFinder" class="org.domotyk.koli.action.AllAnalysesFinder"
+			method="execute">
+			<result name="success">/analyse/Analysesinfo.jsp</result>
+		</action>
+		<action name="allAnalyses" class="org.domotyk.koli.action.AllAnalysesFinder"
+			method="execute">
+			<result name="success">/analyse/Analysesinfo.jsp</result>
+		</action>
+		<action name="startAnalyser" class="org.domotyk.koli.action.StartAnalyser"
+			method="execute">
+			<result name="success">/analyse/Analysesinfo.jsp</result>
+		</action>
+		<action name="now" class="org.domotyk.koli.action.StartAnalyser"
+			method="now">
+			<result type="stream">
+				<param name="contentType">text/json</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<action name="switchOnOff" class="org.domotyk.koli.action.StartAnalyser"
+			method="switchOnOff">
+			<result type="stream">
+				<param name="contentType">text/json</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<action name="getNbThread" class="org.domotyk.koli.action.StartAnalyser"
+			method="getNbThread">
+			<result type="stream">
+				<param name="contentType">text/json</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+
+		<action name="setNbThread" class="org.domotyk.koli.action.StartAnalyser"
+			method="setNbThread">
+			<result type="stream">
+				<param name="contentType">text/json</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+
+
+		<!--RECLAMATION -->
+		<action name="allReclamationFinder" class="org.domotyk.koli.action.AllReclamationFinder"
+			method="execute">
+			<result name="success">/reclamation/reclamationsinfo.jsp</result>
+		</action>
+
+
+
+		<!-- Client -->
+		<action name="*Client" class="org.domotyk.koli.action.Uploader"
+			method="{1}">
+			<result name="input">/uploadok.jsp</result>
+			<result name="success">colis/colisinfos.jsp</result>
+		</action>
+		<action name="*ClientSave" class="org.domotyk.koli.action.ClientSaver"
+			method="{1}">
+			<result name="input">client/inputclient.jsp</result>
+			<result name="success">client/clientinfos.jsp</result>
+		</action>
+		<action name="*ClientUpdate" class="org.domotyk.koli.action.ClientUpdater"
+			method="{1}">
+			<result name="input">client/inputclient.jsp</result>
+			<result name="success">client/clientinfos.jsp</result>
+		</action>
+
+		<action name="allClients" class="org.domotyk.koli.action.AllClients"
+			method="execute">
+			<result name="success">client/clientinfos.jsp</result>
+		</action>
+		<action name="resultClientIhm" class="org.domotyk.koli.action.ClientIhm"
+			method="result">
+			<result name="success">clientihm.jsp</result>
+		</action>
+		<action name="submitFormAutocomplete" class="org.domotyk.koli.action.ClientIhm"
+			method="result">
+			<result name="success">clientihm.jsp</result>
+		</action>
+		<action name="clientDelete" class="org.domotyk.koli.action.ClientDeleter"
+			method="execute">
+			<result name="success">client/clientinfos.jsp</result>
+		</action>
+		<action class="org.domotyk.koli.action.ClientIhm" method="execute"
+			name="executeClientIhm">
+			<result type="stream">
+				<param name="contentType">text/json</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+
+		<action class="org.domotyk.koli.action.ClientIhm" method="generateContrat"
+			name="generateContratIhm">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="exportContrat.doc"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		<action class="org.domotyk.koli.action.ClientIhm" method="generateFicheInfo"
+			name="generateFicheInfoIhm">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="exportFicheInfo.doc"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+	</package>
+
+
+
+</struts>

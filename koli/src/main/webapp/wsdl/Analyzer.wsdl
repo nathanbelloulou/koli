@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://analyzer.koli.domotyk.org" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://analyzer.koli.domotyk.org" xmlns:intf="http://analyzer.koli.domotyk.org" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://analyzer.koli.domotyk.org" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="getJourFerie">
+    <complexType/>
+   </element>
+   <element name="getJourFerieResponse">
+    <complexType>
+     <sequence>
+      <element name="getJourFerieReturn" type="impl:ArrayOf_xsd_anyType"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_xsd_anyType">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:anyType"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getJourFerieResponse">
+
+      <wsdl:part element="impl:getJourFerieResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getJourFerieRequest">
+
+      <wsdl:part element="impl:getJourFerie" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Analyzer">
+
+      <wsdl:operation name="getJourFerie">
+
+         <wsdl:input message="impl:getJourFerieRequest" name="getJourFerieRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getJourFerieResponse" name="getJourFerieResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="AnalyzerSoapBinding" type="impl:Analyzer">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getJourFerie">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getJourFerieRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getJourFerieResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="AnalyzerService">
+
+      <wsdl:port binding="impl:AnalyzerSoapBinding" name="Analyzer">
+
+         <wsdlsoap:address location="http://localhost:8080/koli/services/Analyzer"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

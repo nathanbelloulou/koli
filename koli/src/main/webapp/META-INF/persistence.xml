@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+    <!-- this persistence unit is for the web application -->
+    <persistence-unit name="springJpaPersistenceUnit" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        
+        		
+        		<class>org.domotyk.koli.model.Colis</class>
+        		<class>org.domotyk.koli.model.Message</class>
+        		<class>org.domotyk.koli.model.Client</class>
+        		<class>org.domotyk.koli.model.JourFerie</class>
+        		<class>org.domotyk.koli.model.Reclamation</class>
+	
+
+
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <!-- 
+                value='create' to build a new database on each run;
+                value='update' to modify an existing database;
+                value='create-drop' means the same as 'create' but also drops tables when Hibernate closes;
+                value='validate' makes no changes to the database
+             -->
+            <property name="hibernate.hbm2ddl.auto" value="validate"/>
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.use_sql_comments" value="true" />
+<!--             <property name="hibernate.cache.provider_class" value="net.sf.ehcache.hibernate.SingletonEhCacheProvider"/> -->
+
+<!--	<property name="hibernate.cache.use_second_level_cache" value="true"/>-->
+<!--	 <property name="net.sf.ehcache.configurationResourceName" value="ehcache.xml"/>-->
+
+         </properties>
+    </persistence-unit>
+
+</persistence>

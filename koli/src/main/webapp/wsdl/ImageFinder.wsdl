@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://analyzer.koli.domotyk.org" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://analyzer.koli.domotyk.org" xmlns:intf="http://analyzer.koli.domotyk.org" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://analyzer.koli.domotyk.org" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="getURLDate">
+    <complexType/>
+   </element>
+   <element name="getURLDateResponse">
+    <complexType>
+     <sequence>
+      <element name="getURLDateReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getURLDateResponse">
+
+      <wsdl:part element="impl:getURLDateResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getURLDateRequest">
+
+      <wsdl:part element="impl:getURLDate" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ImageFinder">
+
+      <wsdl:operation name="getURLDate">
+
+         <wsdl:input message="impl:getURLDateRequest" name="getURLDateRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getURLDateResponse" name="getURLDateResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ImageFinderSoapBinding" type="impl:ImageFinder">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getURLDate">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getURLDateRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getURLDateResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ImageFinderService">
+
+      <wsdl:port binding="impl:ImageFinderSoapBinding" name="ImageFinder">
+
+         <wsdlsoap:address location="http://localhost:8080/koli/services/ImageFinder"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
